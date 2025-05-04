@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/filandijeffrey/IT-for-All.git'
+                git branch: 'main', url: 'https://github.com/filandijeffrey/IT-for-All.git'
+
             }
         }
 
