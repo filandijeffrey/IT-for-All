@@ -12,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('filandijeffrey/it-for-all')
+                    docker.build('filandijeffrey/simple-site')
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'docker-hub-creds', url: '']) {
-                        docker.image('filandijeffrey/it-for-all').push('latest')
+                        docker.image('filandijeffrey/simple-site').push('latest')
                     }
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sh 'docker run -d -p 8081:80 filandijeffrey/it-for-all'
+                sh 'docker run -d -p 8081:80 filandijeffrey/simple-site'
             }
         }
     }
